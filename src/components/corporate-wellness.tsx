@@ -43,30 +43,30 @@ const offerings = [
 
 export function CorporateWellness() {
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <Badge className="bg-befit-orange/10 text-befit-orange hover:bg-befit-orange/10 border-0 text-xs font-semibold uppercase tracking-wide">
+          <Badge className="glass-green text-befit-leaf border-0 text-xs font-semibold uppercase tracking-wide">
             B2B & Services
           </Badge>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-befit-dark sm:text-3xl">
+          <h2 className="mt-3 font-heading text-2xl tracking-tight text-befit-dark sm:text-3xl">
             Beyond the Cafe
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-befit-gray">
+          <p className="mx-auto mt-2 max-w-xl text-befit-green-dark/50">
             We&apos;re more than a cafe — we&apos;re a nutrition partner. From corporate offices to gyms, we bring healthy eating to wherever it&apos;s needed.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {offerings.map((item) => (
-            <Card key={item.title} className="p-5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-befit-cream">
-                <item.icon className="h-5 w-5 text-befit-orange" />
+            <Card key={item.title} className="p-5 glass shadow-glass hover:shadow-glass-lg transition-all duration-300 group">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg glass-green transition-all duration-300 group-hover:shadow-glass-green">
+                <item.icon className="h-5 w-5 text-befit-green" />
               </div>
-              <h3 className="mt-3 text-sm font-semibold text-befit-dark">
+              <h3 className="mt-3 text-sm font-semibold text-befit-green-dark">
                 {item.title}
               </h3>
-              <p className="mt-1 text-xs text-befit-gray leading-relaxed">
+              <p className="mt-1 text-xs text-befit-green-dark/50 leading-relaxed">
                 {item.description}
               </p>
             </Card>

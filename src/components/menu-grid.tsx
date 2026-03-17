@@ -9,7 +9,7 @@ function slugify(str: string) {
 
 export function MenuGrid() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
       {categories.map((category) => {
         const items = menuItems.filter((item) => item.category === category)
         return (
@@ -18,10 +18,13 @@ export function MenuGrid() {
             id={slugify(category)}
             className="scroll-mt-28"
           >
-            <h2 className="mb-4 text-lg font-bold text-befit-dark">
+            <h2 className="mb-3 text-base font-bold text-befit-green-dark">
               {category}
+              <span className="ml-2 text-xs font-normal text-befit-green-dark/40">
+                {items.length} items
+              </span>
             </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 lg:grid-cols-2">
               {items.map((item) => (
                 <MenuItemCard key={item.id} item={item} />
               ))}

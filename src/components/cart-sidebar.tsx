@@ -27,9 +27,9 @@ export function CartSidebar({
   return (
     <>
       <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-md">
-          <SheetHeader className="px-5 pt-5 pb-3 border-b border-border">
-            <SheetTitle className="flex items-center gap-2">
+        <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-md glass-strong shadow-glass-lg">
+          <SheetHeader className="px-5 pt-5 pb-3 border-b border-befit-green/10">
+            <SheetTitle className="flex items-center gap-2 text-befit-green-dark">
               <ShoppingBag className="h-5 w-5 text-befit-green" />
               Your Cart ({totalItems})
             </SheetTitle>
@@ -37,27 +37,27 @@ export function CartSidebar({
 
           {cart.items.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center px-5 text-center">
-              <ShoppingBag className="h-16 w-16 text-gray-200" />
-              <p className="mt-4 text-sm font-medium text-befit-gray">
+              <ShoppingBag className="h-16 w-16 text-befit-mint/50" />
+              <p className="mt-4 text-sm font-medium text-befit-green-dark/50">
                 Your cart is empty
               </p>
-              <p className="mt-1 text-xs text-gray-400">
+              <p className="mt-1 text-xs text-befit-green-dark/30">
                 Add items from the menu to get started
               </p>
             </div>
           ) : (
             <div className="flex flex-1 flex-col overflow-hidden">
               <ScrollArea className="flex-1">
-                <div className="divide-y divide-border px-5">
+                <div className="divide-y divide-befit-green/10 px-5">
                   {cart.items.map((item) => (
                     <CartItemRow key={item.id} item={item} />
                   ))}
                 </div>
               </ScrollArea>
 
-              <div className="border-t border-border px-5 py-4 mt-auto">
+              <div className="border-t border-befit-green/10 px-5 py-4 mt-auto glass-strong">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-base font-semibold text-befit-dark">
+                  <span className="text-base font-semibold text-befit-green-dark">
                     Total
                   </span>
                   <span className="text-lg font-bold text-befit-green">
@@ -66,7 +66,7 @@ export function CartSidebar({
                 </div>
                 <Button
                   size="lg"
-                  className="w-full bg-befit-orange hover:bg-befit-orange/90 text-white"
+                  className="w-full bg-gradient-to-r from-befit-green to-befit-leaf hover:from-befit-green/90 hover:to-befit-leaf/90 text-white shadow-glass-green transition-all duration-300"
                   onClick={() => {
                     onOpenChange(false)
                     setOrderOpen(true)

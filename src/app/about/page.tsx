@@ -40,17 +40,17 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <div className="text-center">
-        <span className="inline-block rounded-full bg-befit-green/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-befit-green uppercase">
+        <span className="inline-block rounded-full glass-green px-4 py-1.5 text-xs font-semibold tracking-wide text-befit-green uppercase">
           Our Story
         </span>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-befit-dark sm:text-4xl">
-          About BeFit Cafe
+        <h1 className="mt-4 font-heading text-3xl tracking-tight sm:text-4xl">
+          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-befit-dark to-befit-green-dark">BeFit Cafe</span>
         </h1>
       </div>
 
       {/* Cafe interior images */}
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-glass-lg ring-1 ring-white/30">
           <Image
             src="/images/2b47574bda2d630a313fe662de01b6f8.jpg"
             alt="BeFit Cafe Interior"
@@ -59,7 +59,7 @@ export default function AboutPage() {
             sizes="(max-width: 640px) 100vw, 50vw"
           />
         </div>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-glass-lg ring-1 ring-white/30">
           <Image
             src="/images/4e5916834565c57b0c5c50d21d49a672.jpg"
             alt="BeFit Cafe Seating"
@@ -71,32 +71,32 @@ export default function AboutPage() {
       </div>
 
       <div className="mt-10 space-y-6 text-center max-w-3xl mx-auto">
-        <p className="text-lg text-befit-gray leading-relaxed">
-          <strong className="text-befit-dark">BeFit Cafe by WAT A TASTE!</strong> is Ranchi&apos;s
+        <p className="text-lg text-befit-green-dark/60 leading-relaxed">
+          <strong className="text-befit-green-dark">BeFit Cafe by WAT A TASTE!</strong> is Ranchi&apos;s
           first dedicated healthy food cafe, located on the 4th floor of the
           AnyTime Fitness building on Kanke Road.
         </p>
-        <p className="text-lg text-befit-gray leading-relaxed">
+        <p className="text-lg text-befit-green-dark/60 leading-relaxed">
           We believe eating clean shouldn&apos;t mean eating boring.
         </p>
-        <p className="text-lg text-befit-gray leading-relaxed">
+        <p className="text-lg text-befit-green-dark/60 leading-relaxed">
           Every meal is macro-tracked &mdash; you know exactly what goes into
           your body. Whether you&apos;re bulking, cutting, or just want a
           guilt-free meal &mdash; we&apos;ve got you.
         </p>
       </div>
 
-      <Separator className="my-12" />
+      <Separator className="my-12 bg-befit-green/10" />
 
       <div className="grid gap-8 sm:grid-cols-2">
         {values.map((value) => (
-          <div key={value.title} className="flex gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50">
+          <div key={value.title} className="flex gap-4 group">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl glass-green shadow-glass transition-all duration-300 group-hover:shadow-glass-green">
               <value.icon className="h-6 w-6 text-befit-green" />
             </div>
             <div>
-              <h3 className="font-semibold text-befit-dark">{value.title}</h3>
-              <p className="mt-1 text-sm text-befit-gray leading-relaxed">
+              <h3 className="font-semibold text-befit-green-dark">{value.title}</h3>
+              <p className="mt-1 text-sm text-befit-green-dark/50 leading-relaxed">
                 {value.description}
               </p>
             </div>

@@ -8,6 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
   --font-mono: var(--font-geist-mono);
 
   --color-sidebar-ring: var(--sidebar-ring);
@@ -50,50 +51,53 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* BeFit brand colors */
+  /* BeFit brand colors — green & white palette */
+  --color-befit-green-dark: #1B4332;
   --color-befit-green: #2D6A4F;
-  --color-befit-green-light: #52B788;
   --color-befit-leaf: #40916C;
-  --color-befit-cream: #FEFAE0;
+  --color-befit-green-light: #52B788;
+  --color-befit-green-warm: #74C69D;
+  --color-befit-mint: #95D5B2;
+  --color-befit-pale: #B7E4C7;
+  --color-befit-snow: #D8F3DC;
   --color-befit-white: #FFFFFF;
   --color-befit-dark: #1B1B1B;
   --color-befit-gray: #6B7280;
-  --color-befit-orange: #E76F51;
-  --color-befit-bg: #F8F9FA;
+  --color-befit-bg: #F0FDF4;
 }
 
 :root {
-  --background: #F8F9FA;
+  --background: #F0FDF4;
   --foreground: #1B1B1B;
-  --card: #FFFFFF;
+  --card: rgba(255, 255, 255, 0.6);
   --card-foreground: #1B1B1B;
-  --popover: #FFFFFF;
+  --popover: rgba(255, 255, 255, 0.8);
   --popover-foreground: #1B1B1B;
   --primary: #2D6A4F;
   --primary-foreground: #FFFFFF;
-  --secondary: #F0FDF4;
-  --secondary-foreground: #2D6A4F;
-  --muted: #F3F4F6;
-  --muted-foreground: #6B7280;
-  --accent: #F0FDF4;
-  --accent-foreground: #2D6A4F;
+  --secondary: #D8F3DC;
+  --secondary-foreground: #1B4332;
+  --muted: #D8F3DC;
+  --muted-foreground: #40916C;
+  --accent: #B7E4C7;
+  --accent-foreground: #1B4332;
   --destructive: #EF4444;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
+  --border: rgba(45, 106, 79, 0.12);
+  --input: rgba(45, 106, 79, 0.12);
   --ring: #2D6A4F;
-  --chart-1: #2D6A4F;
-  --chart-2: #52B788;
+  --chart-1: #1B4332;
+  --chart-2: #2D6A4F;
   --chart-3: #40916C;
-  --chart-4: #E76F51;
-  --chart-5: #FEFAE0;
-  --radius: 0.625rem;
-  --sidebar: #FFFFFF;
+  --chart-4: #52B788;
+  --chart-5: #74C69D;
+  --radius: 0.75rem;
+  --sidebar: rgba(255, 255, 255, 0.6);
   --sidebar-foreground: #1B1B1B;
   --sidebar-primary: #2D6A4F;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F0FDF4;
-  --sidebar-accent-foreground: #2D6A4F;
-  --sidebar-border: #E5E7EB;
+  --sidebar-accent: #D8F3DC;
+  --sidebar-accent-foreground: #1B4332;
+  --sidebar-border: rgba(45, 106, 79, 0.12);
   --sidebar-ring: #2D6A4F;
 }
 
@@ -102,9 +106,52 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
   html {
     @apply font-sans scroll-smooth;
+  }
+}
+
+/* Glassmorphism utility classes */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .glass-green {
+    background: rgba(45, 106, 79, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(45, 106, 79, 0.12);
+  }
+  .glass-dark {
+    background: rgba(27, 67, 50, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .shadow-glass {
+    box-shadow: 0 8px 32px rgba(45, 106, 79, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  .shadow-glass-lg {
+    box-shadow: 0 16px 48px rgba(45, 106, 79, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  .shadow-glass-green {
+    box-shadow: 0 8px 32px rgba(45, 106, 79, 0.15), 0 2px 8px rgba(45, 106, 79, 0.08);
   }
 }

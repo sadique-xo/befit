@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { categories } from "@/data/menu"
 import { MenuCategorySidebar, MenuCategoryTabs } from "@/components/menu-category-nav"
 import { MenuGrid } from "@/components/menu-grid"
@@ -13,52 +13,49 @@ export function MenuPageClient() {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0])
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
+    const handleScroll = () => {
+      // Find which section is currently most visible
+      let current: string = categories[0]
 
-    categories.forEach((category) => {
-      const el = document.getElementById(slugify(category))
-      if (!el) return
+      for (const category of categories) {
+        const el = document.getElementById(slugify(category))
+        if (!el) continue
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveCategory(category)
-            }
-          })
-        },
-        { rootMargin: "-20% 0px -60% 0px" }
-      )
+        const rect = el.getBoundingClientRect()
+        // If the top of section is above the middle of screen, it's the current one
+        if (rect.top <= 150) {
+          current = category
+        }
+      }
 
-      observer.observe(el)
-      observers.push(observer)
-    })
-
-    return () => {
-      observers.forEach((obs) => obs.disconnect())
+      setActiveCategory(current)
     }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll() // run once on mount
+
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight text-befit-dark sm:text-3xl">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div className="mb-5 sm:mb-8">
+        <h1 className="font-heading text-xl tracking-tight text-befit-dark sm:text-3xl">
           Our Menu
         </h1>
-        <p className="mt-1 text-befit-gray">
+        <p className="mt-0.5 text-sm text-befit-green-dark/50 sm:text-base">
           Every meal is macro-tracked for your fitness goals
         </p>
       </div>
 
       <div className="flex gap-8">
         {/* Desktop sidebar */}
-        <div className="w-48 shrink-0 hidden md:block">
+        <div className="w-44 shrink-0 hidden md:block">
           <MenuCategorySidebar active={activeCategory} />
         </div>
 
         {/* Main content */}
         <div className="flex-1 min-w-0">
-          {/* Mobile tabs only */}
           <MenuCategoryTabs active={activeCategory} />
           <MenuGrid />
         </div>

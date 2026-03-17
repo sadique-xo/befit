@@ -56,46 +56,46 @@ const plans = [
 
 export function SubscriptionPlans() {
   return (
-    <section className="bg-gradient-to-b from-befit-bg to-white py-16 sm:py-20">
+    <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <Badge className="bg-befit-green/10 text-befit-green hover:bg-befit-green/10 border-0 text-xs font-semibold uppercase tracking-wide">
+          <Badge className="glass-green text-befit-green border-0 text-xs font-semibold uppercase tracking-wide">
             Subscription Plans
           </Badge>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-befit-dark sm:text-3xl">
+          <h2 className="mt-3 font-heading text-2xl tracking-tight text-befit-dark sm:text-3xl">
             Meal Plans That Fit Your Goals
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-befit-gray">
+          <p className="mx-auto mt-2 max-w-xl text-befit-green-dark/50">
             Skip the daily hassle. Subscribe to a plan and get fresh, macro-tracked meals delivered to your door — every single day.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={`relative flex flex-col p-6 ${
-                plan.popular
-                  ? "border-befit-green ring-1 ring-befit-green"
-                  : ""
-              }`}
-            >
+            <div key={plan.name} className="relative pt-3">
               {plan.popular && (
-                <Badge className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-befit-green text-white hover:bg-befit-green border-0">
+                <Badge className="absolute top-0 left-1/2 z-10 -translate-x-1/2 bg-gradient-to-r from-befit-green to-befit-leaf text-white border-0 px-4 py-1 text-xs shadow-glass-green">
                   Most Popular
                 </Badge>
               )}
+              <Card
+                className={`relative flex flex-col p-6 h-full glass shadow-glass hover:shadow-glass-lg transition-all duration-300 ${
+                  plan.popular
+                    ? "ring-1 ring-befit-green/30 shadow-glass-green"
+                    : ""
+                }`}
+              >
 
               <div>
-                <h3 className="text-lg font-bold text-befit-dark">{plan.name}</h3>
-                <p className="text-xs text-befit-gray">{plan.tagline}</p>
+                <h3 className="font-heading text-lg text-befit-dark">{plan.name}</h3>
+                <p className="text-xs text-befit-green-dark/50">{plan.tagline}</p>
               </div>
 
               <div className="mt-4 flex items-baseline gap-1">
                 <span className="text-3xl font-bold text-befit-dark">
                   &#8377;{plan.price}
                 </span>
-                <span className="text-sm text-befit-gray">{plan.period}</span>
+                <span className="text-sm text-befit-green-dark/50">{plan.period}</span>
               </div>
               <p className="mt-1 text-xs font-medium text-befit-green">
                 {plan.meals}
@@ -103,7 +103,7 @@ export function SubscriptionPlans() {
 
               <ul className="mt-6 flex-1 space-y-2.5">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-sm text-befit-gray">
+                  <li key={feature} className="flex items-start gap-2 text-sm text-befit-green-dark/60">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-befit-green-light" />
                     {feature}
                   </li>
@@ -117,21 +117,22 @@ export function SubscriptionPlans() {
                 className="mt-6"
               >
                 <Button
-                  className={`w-full gap-2 ${
+                  className={`w-full gap-2 transition-all duration-300 ${
                     plan.popular
-                      ? "bg-befit-green hover:bg-befit-green/90 text-white"
-                      : "bg-befit-dark hover:bg-befit-dark/90 text-white"
+                      ? "bg-gradient-to-r from-befit-green to-befit-leaf hover:from-befit-green/90 hover:to-befit-leaf/90 text-white shadow-glass-green"
+                      : "bg-befit-green-dark hover:bg-befit-green-dark/90 text-white"
                   }`}
                 >
                   <MessageCircle className="h-4 w-4" />
                   Get Started
                 </Button>
               </a>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
 
-        <p className="mt-6 text-center text-xs text-befit-gray">
+        <p className="mt-6 text-center text-xs text-befit-green-dark/40">
           All plans are flexible — pause, switch, or cancel anytime. No lock-in.
         </p>
       </div>
