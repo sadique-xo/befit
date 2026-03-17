@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/context/cart-context"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,18 +19,34 @@ export function Navbar({ onCartOpen }: { onCartOpen: () => void }) {
   const pathname = usePathname()
   const { totalItems } = useCart()
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastScrollY = useRef(0)
+  const isMenuPage = pathname === "/menu"
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const currentY = window.scrollY
+      setScrolled(currentY > 50)
+
+      if (isMenuPage) {
+        setHidden(currentY > lastScrollY.current && currentY > 80)
+      }
+
+      lastScrollY.current = currentY
     }
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMenuPage])
+
+  useEffect(() => {
+    if (!isMenuPage) setHidden(false)
+  }, [isMenuPage])
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      } ${
         scrolled ? "bg-transparent py-2 px-4" : "glass-strong shadow-glass"
       }`}
     >

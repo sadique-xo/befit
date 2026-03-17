@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { categories } from "@/data/menu"
 import { cn } from "@/lib/utils"
 
@@ -44,6 +44,19 @@ export function MenuCategorySidebar({ active }: { active: string }) {
 
 export function MenuCategoryTabs({ active }: { active: string }) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const lastScrollY = useRef(0)
+  const [navHidden, setNavHidden] = useState(false)
+
+  // Track scroll direction to match navbar hide/show
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      setNavHidden(currentY > lastScrollY.current && currentY > 80)
+      lastScrollY.current = currentY
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   // Auto-scroll active tab into view
   useEffect(() => {
@@ -61,7 +74,7 @@ export function MenuCategoryTabs({ active }: { active: string }) {
   }, [active])
 
   return (
-    <div className="sticky top-14 z-30 -mx-3 sm:-mx-6 glass-strong px-3 sm:px-6 py-2 md:hidden">
+    <div className={`sticky z-30 -mx-3 sm:-mx-6 glass-strong px-3 sm:px-6 py-2 md:hidden transition-all duration-300 ${navHidden ? "top-0" : "top-14"}`}>
       <div ref={scrollRef} className="flex gap-2 overflow-x-auto scrollbar-hide">
         {categories.map((category) => (
           <button

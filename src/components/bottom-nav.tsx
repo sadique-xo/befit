@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, UtensilsCrossed, ShoppingBag, ClipboardList, User } from "lucide-react"
@@ -16,9 +17,29 @@ const tabs = [
 export function BottomNav() {
   const pathname = usePathname()
   const { totalItems } = useCart()
+  const [hidden, setHidden] = useState(false)
+  const lastScrollY = useRef(0)
+
+  const isMenuPage = pathname === "/menu"
+
+  useEffect(() => {
+    if (!isMenuPage) {
+      setHidden(false)
+      return
+    }
+
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      setHidden(currentY > lastScrollY.current && currentY > 80)
+      lastScrollY.current = currentY
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isMenuPage])
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+    <div className={`fixed bottom-4 left-4 right-4 z-50 md:hidden transition-all duration-300 ${hidden ? "translate-y-[calc(100%+2rem)] opacity-0" : "translate-y-0 opacity-100"}`}>
       <nav className="mx-auto flex max-w-md items-center justify-around rounded-2xl glass-strong px-2 py-2 shadow-glass-lg">
         {tabs.map((tab) => {
           const isActive = pathname === tab.href
